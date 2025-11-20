@@ -2,6 +2,10 @@ import { useState } from "react";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { ArrowRight } from "lucide-react";
 
+interface FAQProps {
+  onBookClick?: () => void;
+}
+
 const faqData = [
   {
     id: "item-1",
@@ -41,16 +45,16 @@ const faqData = [
   },
 ];
 
-const FAQ = () => {
+const FAQ = ({ onBookClick }: FAQProps) => {
   const [openItem, setOpenItem] = useState<string>("");
 
   return (
     <section id="faq" className="py-24 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
-      {/* Background gradient glow - Increased glow effect opacity for more presence */}
+      {/* Background gradient glow */}
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-primary/10 to-transparent pointer-events-none" />
 
       <div className="max-w-4xl mx-auto relative">
-        {/* Header - Increased font sizes and emphasized primary color in the title */}
+        {/* Header */}
         <div className="flex justify-between items-start mb-20">
           <div>
             <h2 className="text-5xl sm:text-7xl font-bold mb-4">
@@ -61,23 +65,22 @@ const FAQ = () => {
 
           <div className="hidden sm:block text-right">
             <p className="text-base text-muted-foreground mb-2">Can't find an answer?</p>
-            <a
-              href="#contact-us"
+            <button
+              onClick={onBookClick}
               className="inline-flex items-center gap-2 text-primary hover:text-primary/80 transition-colors group font-semibold"
             >
               Talk to sales
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-            </a>
+            </button>
           </div>
         </div>
 
-        {/* FAQ Accordion - Added card/glass-like styling and increased spacing/size */}
+        {/* FAQ Accordion */}
         <Accordion type="single" collapsible value={openItem} onValueChange={setOpenItem} className="space-y-4">
-          {faqData.map((faq, index) => (
+          {faqData.map((faq) => (
             <AccordionItem
               key={faq.id}
               value={faq.id}
-              // Added glass-like styling to make items stand out and cohesive with ROI/other sections
               className="border border-primary/20 transition-all bg-card/50 px-4 rounded-xl shadow-xl hover:border-primary/50 backdrop-blur-sm"
             >
               <AccordionTrigger className="text-left py-5 hover:no-underline group">
@@ -87,7 +90,6 @@ const FAQ = () => {
               </AccordionTrigger>
               <AccordionContent className="pb-6 pt-0">
                 <div className="flex gap-4">
-                  {/* Changed gradient line to exclusively use primary color for cohesion */}
                   <div className="w-1 bg-gradient-to-b from-primary to-primary/50 rounded-full flex-shrink-0" />
                   <p className="text-lg text-muted-foreground leading-relaxed">{faq.answer}</p>
                 </div>
@@ -99,13 +101,13 @@ const FAQ = () => {
         {/* Mobile CTA */}
         <div className="sm:hidden mt-16 text-center">
           <p className="text-base text-muted-foreground mb-2">Can't find an answer?</p>
-          <a
-            href="#contact-us"
+          <button
+            onClick={onBookClick}
             className="inline-flex items-center gap-2 text-primary hover:text-primary/80 transition-colors group font-semibold"
           >
             Talk to sales
             <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-          </a>
+          </button>
         </div>
       </div>
     </section>
