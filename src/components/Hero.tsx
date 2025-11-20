@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
+import VideoPlayer from "@/components/VideoPlayer"; // Import the new component
 
 interface HeroProps {
   children?: React.ReactNode;
@@ -7,7 +8,7 @@ interface HeroProps {
 
 const Hero = ({ children }: HeroProps) => {
   return (
-    // Adjusted pt-20 to pt-16 to match the smaller initial navbar height (h-16)
+    // Section uses pt-16 (for small navbar) and min-h-svh (full viewport height)
     <section id="hero" className="relative pt-16 flex flex-col justify-between min-h-svh overflow-hidden">
       {/* Animated Background */}
       <div className="absolute inset-0 z-0">
@@ -21,17 +22,17 @@ const Hero = ({ children }: HeroProps) => {
         <div className="absolute inset-0 bg-[linear-gradient(rgba(59,130,246,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(59,130,246,0.03)_1px,transparent_1px)] bg-[size:100px_100px] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_50%,black,transparent)]"></div>
       </div>
 
-      {/* Content Container (Headline, CTA, Video) */}
+      {/* Content Container (Headline, CTA, Video) - flex-1 and justify-center centers content vertically */}
       <div className="container relative z-10 px-6 flex flex-col items-center justify-center flex-1 py-8 md:py-12">
         <div className="max-w-5xl mx-auto text-center space-y-8">
-          {/* Headline - REDUCED FONT SIZE */}
+          {/* Headline - smaller text size for more room */}
           <div className="space-y-4 animate-fade-in">
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight">
               Dominate Your Market.
               <br />
               <span className="gradient-text">We Build Your Growth Engine.</span>
             </h1>
-            {/* Sub-headline - REDUCED FONT SIZE */}
+            {/* Sub-headline - smaller text size for more room */}
             <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto">
               Exclusive, High-Intent Appointments for Elite Contractors. Guaranteed.
             </p>
@@ -52,19 +53,13 @@ const Hero = ({ children }: HeroProps) => {
           </div>
         </div>
         
-        {/* Video Player */}
-        <div className="relative w-full px-4 md:px-6 z-10 animate-scale-in pt-12" style={{ animationDelay: "0.2s" }}>
-          <div className="max-w-7xl mx-auto aspect-video glass rounded-2xl overflow-hidden shadow-[0_0_50px_rgba(59,130,246,0.3)]">
-            <div className="w-full h-full bg-secondary/50 flex items-center justify-center">
-              {/* Placeholder for video - in production, replace with actual video component */}
-              <div className="text-center space-y-4 p-8">
-                <div className="w-20 h-20 mx-auto rounded-full bg-primary/20 flex items-center justify-center backdrop-blur-sm border border-primary/30">
-                  <div className="w-0 h-0 border-t-[12px] border-t-transparent border-l-[20px] border-l-primary border-b-[12px] border-b-transparent ml-1"></div>
-                </div>
-                <p className="text-muted-foreground">Sales Letter Video</p>
-              </div>
-            </div>
-          </div>
+        {/* Video Player Component - Replaced old placeholder with new component */}
+        <div className="w-full max-w-7xl px-4 md:px-6 pt-12">
+            <VideoPlayer 
+                videoUrl="https://www.youtube.com/embed/dQw4w9WgXcQ?controls=0&modestbranding=1&rel=0" // Placeholder URL
+                className="animate-scale-in"
+                style={{ animationDelay: "0.2s" }}
+            />
         </div>
       </div>
 
