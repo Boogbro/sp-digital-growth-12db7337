@@ -4,7 +4,6 @@ import { Menu, ArrowRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import { NavLink } from "@/components/NavLink";
 
 const navItems = [
   { href: "#system-process", label: "Process" },
@@ -13,7 +12,11 @@ const navItems = [
   { href: "#faq", label: "FAQ" },
 ];
 
-const Navbar = () => {
+interface NavbarProps {
+  onBookClick?: () => void;
+}
+
+const Navbar = ({ onBookClick }: NavbarProps) => {
   const [isScrolled, setIsScrolled] = React.useState(false);
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
 
@@ -28,6 +31,11 @@ const Navbar = () => {
 
   const handleNavLinkClick = () => {
     setIsMenuOpen(false);
+  };
+
+  const handleBookingTrigger = () => {
+    setIsMenuOpen(false);
+    if (onBookClick) onBookClick();
   };
 
   const NavContent = () => (
@@ -48,13 +56,10 @@ const Navbar = () => {
         <Button
           size="lg"
           className="w-full text-lg px-8 py-6 bg-primary hover:bg-primary/90 text-primary-foreground glow transition-all duration-300 group"
-          onClick={handleNavLinkClick}
-          asChild
+          onClick={handleBookingTrigger}
         >
-          <a href="#contact-us">
-            Book a Strategy Call
-            <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" />
-          </a>
+          Book a Strategy Call
+          <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" />
         </Button>
       </div>
     </div>
@@ -66,14 +71,14 @@ const Navbar = () => {
         "fixed w-full transition-all duration-300 z-50",
         isScrolled
           ? "bg-background/90 backdrop-blur-xl border-b border-border/50 shadow-lg"
-          : "glass border-b border-transparent"
+          : "glass border-b border-transparent",
       )}
     >
       {/* Dynamic height class applied here */}
-      <div 
+      <div
         className={cn(
           "container mx-auto flex items-center justify-between px-6 transition-all duration-300",
-          isScrolled ? "h-20" : "h-16" // Shorter on load, taller on scroll
+          isScrolled ? "h-20" : "h-16", // Shorter on load, taller on scroll
         )}
       >
         {/* Logo/Title */}
@@ -101,12 +106,10 @@ const Navbar = () => {
           <Button
             size="sm"
             className="hidden lg:flex px-6 bg-primary hover:bg-primary/90 text-primary-foreground glow hover:scale-[1.03] transition-all duration-300 group"
-            asChild
+            onClick={onBookClick}
           >
-            <a href="#contact-us">
-              Book a Strategy Call
-              <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" />
-            </a>
+            Book a Strategy Call
+            <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" />
           </Button>
 
           {/* Mobile Menu Trigger */}
@@ -121,7 +124,7 @@ const Navbar = () => {
               {/* Logo in Sheet Header */}
               <div className="pb-6 border-b border-border/50">
                 <h1 className="text-xl md:text-2xl font-black">
-                    <span className="gradient-text">SP Digital Growth</span>
+                  <span className="gradient-text">SP Digital Growth</span>
                 </h1>
               </div>
               <NavContent />
