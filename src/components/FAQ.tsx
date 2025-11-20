@@ -50,59 +50,61 @@ const FAQ = () => {
   const [openItem, setOpenItem] = useState<string>("");
 
   return (
-    <section id="faq" className="py-24 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
-      {/* Background gradient glow */}
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-primary/5 to-transparent pointer-events-none" />
+    <section id="faq" className="py-32 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+      {/* Background gradient glow - Increased glow effect opacity for more presence */}
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-primary/10 to-transparent pointer-events-none" />
       
       <div className="max-w-4xl mx-auto relative">
-        {/* Header */}
-        <div className="flex justify-between items-start mb-16">
+        {/* Header - Increased font sizes and emphasized primary color in the title */}
+        <div className="flex justify-between items-start mb-20">
           <div>
-            <h2 className="text-5xl sm:text-6xl font-bold text-foreground mb-2">
-              Have questions?
+            <h2 className="text-5xl sm:text-7xl font-bold mb-4">
+              <span className="gradient-text">Have questions?</span>
             </h2>
-            <p className="text-3xl sm:text-4xl text-muted-foreground">
+            <p className="text-xl sm:text-2xl text-muted-foreground">
               Find answers.
             </p>
           </div>
           
           <div className="hidden sm:block text-right">
-            <p className="text-sm text-muted-foreground mb-2">
-              Any more questions?
+            <p className="text-base text-muted-foreground mb-2">
+              Can't find an answer?
             </p>
             <a
               href="#contact-us"
-              className="inline-flex items-center gap-2 text-foreground hover:text-primary transition-colors group"
+              className="inline-flex items-center gap-2 text-primary hover:text-primary/80 transition-colors group font-semibold"
             >
               Talk to sales
-              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </a>
           </div>
         </div>
 
-        {/* FAQ Accordion */}
+        {/* FAQ Accordion - Added card/glass-like styling and increased spacing/size */}
         <Accordion
           type="single"
           collapsible
           value={openItem}
           onValueChange={setOpenItem}
-          className="space-y-0"
+          className="space-y-4"
         >
           {faqData.map((faq, index) => (
             <AccordionItem
               key={faq.id}
               value={faq.id}
-              className="border-b border-border/50 transition-all"
+              // Added glass-like styling to make items stand out and cohesive with ROI/other sections
+              className="border border-primary/20 transition-all bg-card/50 px-4 rounded-xl shadow-xl hover:border-primary/50 backdrop-blur-sm"
             >
-              <AccordionTrigger className="text-left py-6 hover:no-underline group">
-                <span className="text-lg font-medium text-foreground group-hover:text-primary transition-colors">
+              <AccordionTrigger className="text-left py-5 hover:no-underline group">
+                <span className="text-xl md:text-2xl font-semibold text-foreground group-hover:text-primary transition-colors">
                   {faq.question}
                 </span>
               </AccordionTrigger>
               <AccordionContent className="pb-6 pt-0">
-                <div className="flex gap-3">
-                  <div className="w-1 bg-gradient-to-b from-primary to-warm-accent rounded-full flex-shrink-0" />
-                  <p className="text-muted-foreground leading-relaxed">
+                <div className="flex gap-4">
+                  {/* Changed gradient line to exclusively use primary color for cohesion */}
+                  <div className="w-1 bg-gradient-to-b from-primary to-primary/50 rounded-full flex-shrink-0" />
+                  <p className="text-lg text-muted-foreground leading-relaxed">
                     {faq.answer}
                   </p>
                 </div>
@@ -112,16 +114,16 @@ const FAQ = () => {
         </Accordion>
 
         {/* Mobile CTA */}
-        <div className="sm:hidden mt-12 text-center">
-          <p className="text-sm text-muted-foreground mb-2">
-            Any more questions?
+        <div className="sm:hidden mt-16 text-center">
+          <p className="text-base text-muted-foreground mb-2">
+            Can't find an answer?
           </p>
           <a
             href="#contact-us"
-            className="inline-flex items-center gap-2 text-foreground hover:text-primary transition-colors group"
+            className="inline-flex items-center gap-2 text-primary hover:text-primary/80 transition-colors group font-semibold"
           >
             Talk to sales
-            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+            <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
           </a>
         </div>
       </div>
