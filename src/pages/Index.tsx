@@ -8,35 +8,28 @@ import FAQ from "@/components/FAQ";
 import FinalCTA from "@/components/FinalCTA";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-// Import the new modal
 import BookingModal from "@/components/BookingModal";
 
 const Index = () => {
   const [isBookingOpen, setIsBookingOpen] = useState(false);
 
-  const openBooking = () => setIsBookingOpen(true);
+  const handleBookClick = () => {
+    setIsBookingOpen(true);
+  };
 
   return (
     <div className="min-h-screen pt-0">
-      {/* Pass the open function to Navbar */}
-      <Navbar onBookClick={openBooking} />
-      
-      {/* Pass the open function to Hero */}
-      <Hero onBookClick={openBooking}>
+      <Navbar onBookClick={handleBookClick} />
+      <Hero onBookClick={handleBookClick}>
         <LogoCarousel />
       </Hero>
-
       <SystemProcess />
       <GrowthInfrastructure />
       <ROICalculator />
-      <FAQ />
-      
-      {/* Update FinalCTA to accept the prop if needed, or just wrap the button there too */}
-      <FinalCTA onBookClick={openBooking} /> 
-      
-      <Footer />
+      <FAQ onBookClick={handleBookClick} />
+      <FinalCTA onBookClick={handleBookClick} />
+      <Footer onBookClick={handleBookClick} />
 
-      {/* The Modal sits here */}
       <BookingModal isOpen={isBookingOpen} onOpenChange={setIsBookingOpen} />
     </div>
   );
