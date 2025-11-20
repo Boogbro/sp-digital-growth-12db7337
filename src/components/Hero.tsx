@@ -7,8 +7,8 @@ interface HeroProps {
 
 const Hero = ({ children }: HeroProps) => {
   return (
-    // Added min-h-svh to ensure full viewport height and justify-between to push the carousel to the bottom
-    <section id="hero" className="relative pt-20 flex flex-col justify-between min-h-svh overflow-hidden">
+    // Adjusted pt-20 to pt-16 to match the smaller initial navbar height (h-16)
+    <section id="hero" className="relative pt-16 flex flex-col justify-between min-h-svh overflow-hidden">
       {/* Animated Background */}
       <div className="absolute inset-0 z-0">
         <div className="absolute inset-0 bg-background"></div>
@@ -21,17 +21,18 @@ const Hero = ({ children }: HeroProps) => {
         <div className="absolute inset-0 bg-[linear-gradient(rgba(59,130,246,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(59,130,246,0.03)_1px,transparent_1px)] bg-[size:100px_100px] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_50%,black,transparent)]"></div>
       </div>
 
-      {/* Content Container (Headline, CTA, Video) - Uses flex-1 and justify-center to center content vertically */}
+      {/* Content Container (Headline, CTA, Video) */}
       <div className="container relative z-10 px-6 flex flex-col items-center justify-center flex-1 py-8 md:py-12">
         <div className="max-w-5xl mx-auto text-center space-y-8">
-          {/* Headline */}
+          {/* Headline - REDUCED FONT SIZE */}
           <div className="space-y-4 animate-fade-in">
-            <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight">
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight">
               Dominate Your Market.
               <br />
               <span className="gradient-text">We Build Your Growth Engine.</span>
             </h1>
-            <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto">
+            {/* Sub-headline - REDUCED FONT SIZE */}
+            <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto">
               Exclusive, High-Intent Appointments for Elite Contractors. Guaranteed.
             </p>
           </div>
@@ -51,7 +52,7 @@ const Hero = ({ children }: HeroProps) => {
           </div>
         </div>
         
-        {/* Video Player - Added top padding for separation */}
+        {/* Video Player */}
         <div className="relative w-full px-4 md:px-6 z-10 animate-scale-in pt-12" style={{ animationDelay: "0.2s" }}>
           <div className="max-w-7xl mx-auto aspect-video glass rounded-2xl overflow-hidden shadow-[0_0_50px_rgba(59,130,246,0.3)]">
             <div className="w-full h-full bg-secondary/50 flex items-center justify-center">
