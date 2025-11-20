@@ -1,8 +1,7 @@
-// src/components/Footer.tsx
-
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
+import { Link } from "react-router-dom";
 
 interface FooterProps {
   onBookClick?: () => void;
@@ -12,10 +11,10 @@ const Footer = ({ onBookClick }: FooterProps) => {
   const currentYear = new Date().getFullYear();
 
   const navItems = [
-    { href: "#system-process", label: "Process" },
-    { href: "#infrastructure", label: "Infrastructure" },
-    { href: "#roi-calculator", label: "ROI" },
-    { href: "#faq", label: "FAQ" },
+    { href: "/#system-process", label: "Process" },
+    { href: "/#infrastructure", label: "Infrastructure" },
+    { href: "/#roi-calculator", label: "ROI" },
+    { href: "/#faq", label: "FAQ" },
   ];
 
   return (
@@ -24,7 +23,7 @@ const Footer = ({ onBookClick }: FooterProps) => {
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-12">
           {/* Column 1: Brand Info */}
           <div className="col-span-2 md:col-span-1 space-y-4">
-            <a href="#hero" className="flex items-center space-x-2">
+            <a href="/" className="flex items-center space-x-2">
               <h1 className="text-2xl font-black">
                 <span className="gradient-text">SP Digital Growth</span>
               </h1>
@@ -89,12 +88,12 @@ const Footer = ({ onBookClick }: FooterProps) => {
         <div className="flex flex-col md:flex-row justify-between items-center text-xs text-muted-foreground pt-4">
           <p>&copy; {currentYear} SP Digital Growth. All rights reserved.</p>
           <div className="flex space-x-4 mt-4 md:mt-0">
-            <a href="#" className="hover:text-primary transition-colors">
+            <Link to="/privacy-policy" className="hover:text-primary transition-colors">
               Privacy Policy
-            </a>
-            <a href="#" className="hover:text-primary transition-colors">
+            </Link>
+            <Link to="/terms-of-service" className="hover:text-primary transition-colors">
               Terms of Service
-            </a>
+            </Link>
           </div>
         </div>
       </div>
