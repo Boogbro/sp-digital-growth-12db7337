@@ -9,6 +9,8 @@ const steps = [
     description: "We analyze 47+ data points to identify high-intent homeowners in your service area.",
     className: "md:col-span-2", // Spans 2 columns
     gradient: "from-blue-500/20 via-indigo-500/10 to-transparent",
+    // REPLACE WITH YOUR IMAGE URL
+    image: "/placeholders/market-targeting.png",
   },
   {
     number: "02",
@@ -17,6 +19,8 @@ const steps = [
     description: "Our proprietary AI conducts 12-point qualification calls before they ever reach your calendar.",
     className: "md:col-span-1", // Spans 1 column
     gradient: "from-purple-500/20 via-pink-500/10 to-transparent",
+    // REPLACE WITH YOUR IMAGE URL
+    image: "/placeholders/ai-qualification.png",
   },
   {
     number: "03",
@@ -25,6 +29,8 @@ const steps = [
     description: "Qualified prospects book directly into your team's calendar. No sharing, no competition.",
     className: "md:col-span-1", // Spans 1 column
     gradient: "from-emerald-500/20 via-teal-500/10 to-transparent",
+    // REPLACE WITH YOUR IMAGE URL
+    image: "/placeholders/calendar-scheduling.png",
   },
   {
     number: "04",
@@ -33,6 +39,8 @@ const steps = [
     description: "We make you the obvious choice in your market, boosting close rates by 34%.",
     className: "md:col-span-2", // Spans 2 columns
     gradient: "from-orange-500/20 via-amber-500/10 to-transparent",
+    // REPLACE WITH YOUR IMAGE URL
+    image: "/placeholders/growth-chart.png",
   },
 ];
 
@@ -75,50 +83,21 @@ const SystemProcess = () => {
                   )}
                 />
 
-                <div className="relative h-full flex flex-col justify-between p-8 md:p-10 min-h-[320px]">
+                {/* Background Image */}
+                <div className="absolute inset-0 z-0 opacity-20 group-hover:opacity-30 transition-opacity duration-700 mix-blend-overlay">
+                  <img src={step.image} alt={step.title} className="w-full h-full object-cover" loading="lazy" />
+                  {/* Gradient Overlay to fade image into bottom/sides */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-r from-background/50 via-transparent to-transparent" />
+                </div>
+
+                <div className="relative h-full flex flex-col justify-between p-8 md:p-10 min-h-[320px] z-10">
                   {/* Top Section: Icon & Number */}
                   <div className="flex justify-between items-start mb-8">
-                    <div className="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center group-hover:scale-110 transition-transform duration-500">
+                    <div className="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center group-hover:scale-110 transition-transform duration-500 backdrop-blur-md">
                       <Icon className="w-6 h-6 text-foreground/80" />
                     </div>
                     <span className="text-sm font-mono text-muted-foreground/50 tracking-widest">{step.number}</span>
-                  </div>
-
-                  {/* Abstract Visual Decorations based on index to mimic screenshots */}
-                  <div className="absolute right-0 top-0 w-full h-full pointer-events-none overflow-hidden">
-                    {/* Visual for Card 01 (Targeting) */}
-                    {index === 0 && (
-                      <div className="absolute -right-12 -top-12 w-64 h-64 border border-white/5 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-700">
-                        <div className="w-48 h-48 border border-white/5 rounded-full flex items-center justify-center">
-                          <div className="w-32 h-32 bg-primary/5 rounded-full blur-2xl" />
-                        </div>
-                      </div>
-                    )}
-
-                    {/* Visual for Card 03 (Calendar) */}
-                    {index === 2 && (
-                      <div className="absolute right-8 top-8 opacity-20 group-hover:opacity-40 transition-opacity">
-                        <div className="flex gap-2">
-                          <div className="w-2 h-2 rounded-full bg-foreground" />
-                          <div className="w-2 h-2 rounded-full bg-foreground" />
-                          <div className="w-2 h-2 rounded-full bg-foreground" />
-                        </div>
-                      </div>
-                    )}
-
-                    {/* Visual for Card 04 (Growth) */}
-                    {index === 3 && (
-                      <div className="absolute right-0 bottom-0 w-1/2 h-full opacity-[0.03] group-hover:opacity-[0.07] transition-opacity">
-                        <svg viewBox="0 0 200 100" className="w-full h-full">
-                          <path
-                            d="M0 100 C 50 100, 50 20, 100 20 S 150 80, 200 0"
-                            fill="none"
-                            stroke="currentColor"
-                            strokeWidth="2"
-                          />
-                        </svg>
-                      </div>
-                    )}
                   </div>
 
                   {/* Content Section */}
@@ -133,7 +112,9 @@ const SystemProcess = () => {
 
                   {/* Corner Action Icon */}
                   <div className="absolute bottom-8 right-8 opacity-0 group-hover:opacity-100 transform translate-y-2 group-hover:translate-y-0 transition-all duration-500">
-                    <ArrowUpRight className="w-6 h-6 text-primary" />
+                    <div className="p-2 rounded-full bg-primary/10 border border-primary/20">
+                      <ArrowUpRight className="w-5 h-5 text-primary" />
+                    </div>
                   </div>
                 </div>
               </div>
