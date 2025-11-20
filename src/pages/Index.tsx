@@ -6,6 +6,7 @@ import GrowthInfrastructure from "@/components/GrowthInfrastructure";
 import FAQ from "@/components/FAQ";
 import FinalCTA from "@/components/FinalCTA";
 import Navbar from "@/components/Navbar";
+import VideoPlayer from "@/components/VideoPlayer"; // Added import
 
 const Index = () => {
   return (
