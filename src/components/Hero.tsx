@@ -59,7 +59,7 @@ const Hero = ({ children }: HeroProps) => {
         {/* Video Player Component */}
         <div className="w-full max-w-4xl px-4 md:px-6 pt-12">
           <VideoPlayer
-            videoUrl="https://storage.googleapis.com/msgsndr/X2rQE5wKsLFPGWY3j9b7/media/691eada64dde6dd3595b9ac4.wav" // Placeholder URL
+            videoUrl="https://storage.googleapis.com/msgsndr/X2rQE5wKsLFPGWY3j9b7/media/691eb27388e1e669aaa7d2c7.mp4" // Placeholder URL
             className="animate-scale-in"
             style={{ animationDelay: "0.2s" }}
           />
