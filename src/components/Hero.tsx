@@ -3,7 +3,7 @@ import { ArrowRight } from "lucide-react";
 
 const Hero = () => {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Animated Background */}
       <div className="absolute inset-0 z-0">
         <div className="absolute inset-0 bg-gradient-to-b from-background via-background to-secondary/30"></div>
@@ -51,9 +51,12 @@ const Hero = () => {
             <Button 
               size="lg"
               className="text-lg px-8 py-6 bg-primary hover:bg-primary/90 text-primary-foreground glow hover:scale-105 transition-all duration-300 group"
+              asChild
             >
-              Book a Strategy Call
-              <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" />
+              <a href="#contact-us">
+                Book a Strategy Call
+                <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" />
+              </a>
             </Button>
           </div>
         </div>
