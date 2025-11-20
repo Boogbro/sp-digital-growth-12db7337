@@ -11,8 +11,8 @@ const Index = () => {
       <Hero />
       <LogoCarousel />
       <SystemProcess />
-      <ROICalculator />
       <GrowthInfrastructure />
+      <ROICalculator />
       <FinalCTA />
     </div>
   );
