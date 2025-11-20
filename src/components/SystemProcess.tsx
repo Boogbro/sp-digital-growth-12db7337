@@ -20,7 +20,7 @@ const steps = [
     className: "md:col-span-1", // Spans 1 column
     gradient: "from-purple-500/20 via-pink-500/10 to-transparent",
     // REPLACE WITH YOUR IMAGE URL
-    image: "/placeholders/ai-qualification.png",
+    image: "https://storage.googleapis.com/msgsndr/X2rQE5wKsLFPGWY3j9b7/media/691ec0705c5cab484c042f45.png",
   },
   {
     number: "03",
@@ -30,7 +30,7 @@ const steps = [
     className: "md:col-span-1", // Spans 1 column
     gradient: "from-emerald-500/20 via-teal-500/10 to-transparent",
     // REPLACE WITH YOUR IMAGE URL
-    image: "/placeholders/calendar-scheduling.png",
+    image: "https://storage.googleapis.com/msgsndr/X2rQE5wKsLFPGWY3j9b7/media/691ec07093893187ceaab482.png",
   },
   {
     number: "04",
@@ -40,7 +40,7 @@ const steps = [
     className: "md:col-span-2", // Spans 2 columns
     gradient: "from-orange-500/20 via-amber-500/10 to-transparent",
     // REPLACE WITH YOUR IMAGE URL
-    image: "/placeholders/growth-chart.png",
+    image: "https://storage.googleapis.com/msgsndr/X2rQE5wKsLFPGWY3j9b7/media/691ec070330ab50a6ad46dd4.png",
   },
 ];
 
