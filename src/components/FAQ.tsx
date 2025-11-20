@@ -50,7 +50,7 @@ const FAQ = () => {
   const [openItem, setOpenItem] = useState<string>("");
 
   return (
-    <section className="py-24 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+    <section id="faq" className="py-24 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
       {/* Background gradient glow */}
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-primary/5 to-transparent pointer-events-none" />
       
@@ -71,7 +71,7 @@ const FAQ = () => {
               Any more questions?
             </p>
             <a
-              href="#contact"
+              href="#contact-us"
               className="inline-flex items-center gap-2 text-foreground hover:text-primary transition-colors group"
             >
               Talk to sales
@@ -117,7 +117,7 @@ const FAQ = () => {
             Any more questions?
           </p>
           <a
-            href="#contact"
+            href="#contact-us"
             className="inline-flex items-center gap-2 text-foreground hover:text-primary transition-colors group"
           >
             Talk to sales
