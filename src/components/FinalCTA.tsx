@@ -3,7 +3,7 @@ import { ArrowRight } from "lucide-react";
 
 const FinalCTA = () => {
   return (
-    <section className="py-32 px-6 relative overflow-hidden">
+    <section id="contact-us" className="py-32 px-6 relative overflow-hidden">
       {/* Background effects */}
       <div className="absolute inset-0">
         <div className="absolute inset-0 bg-gradient-to-t from-background via-secondary/20 to-background"></div>
