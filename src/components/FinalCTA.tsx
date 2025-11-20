@@ -3,7 +3,7 @@ import { ArrowRight } from "lucide-react";
 
 const FinalCTA = () => {
   return (
-    <section id="contact-us" className="py-32 px-6 relative overflow-hidden">
+    <section id="contact-us" className="py-24 px-6 relative overflow-hidden">
       {/* Background effects */}
       <div className="absolute inset-0">
         <div className="absolute inset-0 bg-gradient-to-t from-background via-secondary/20 to-background"></div>
@@ -24,7 +24,7 @@ const FinalCTA = () => {
           </p>
 
           <div className="pt-4">
-            <Button 
+            <Button
               size="lg"
               className="text-lg px-10 py-7 bg-primary hover:bg-primary/90 text-primary-foreground glow hover:scale-105 transition-all duration-300 group"
             >
