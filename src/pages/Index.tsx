@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, lazy, Suspense } from "react";
 import Hero from "@/components/Hero";
 import LogoCarousel from "@/components/LogoCarousel";
 import SystemProcess from "@/components/SystemProcess";
@@ -8,7 +8,9 @@ import FAQ from "@/components/FAQ";
 import FinalCTA from "@/components/FinalCTA";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import BookingModal from "@/components/BookingModal";
+
+// Lazy load the modal (Heavy component)
+const BookingModal = lazy(() => import("@/components/BookingModal"));
 
 const Index = () => {
   const [isBookingOpen, setIsBookingOpen] = useState(false);
@@ -30,7 +32,12 @@ const Index = () => {
       <FinalCTA onBookClick={handleBookClick} />
       <Footer onBookClick={handleBookClick} />
 
-      <BookingModal isOpen={isBookingOpen} onOpenChange={setIsBookingOpen} />
+      {/* Only load the code if the modal is requested */}
+      {isBookingOpen && (
+        <Suspense fallback={<div />}>
+          <BookingModal isOpen={isBookingOpen} onOpenChange={setIsBookingOpen} />
+        </Suspense>
+      )}
     </div>
   );
 };
