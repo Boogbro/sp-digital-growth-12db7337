@@ -10,7 +10,7 @@ const steps = [
     className: "md:col-span-2", // Spans 2 columns
     gradient: "from-blue-500/20 via-indigo-500/10 to-transparent",
     // REPLACE WITH YOUR IMAGE URL
-    image: "/placeholders/market-targeting.png",
+    image: "https://storage.googleapis.com/msgsndr/X2rQE5wKsLFPGWY3j9b7/media/691ec07053e35079ab4dca1e.png",
   },
   {
     number: "02",
