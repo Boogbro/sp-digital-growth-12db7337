@@ -1,25 +1,34 @@
 import { useState, useEffect } from "react";
 import { Slider } from "@/components/ui/slider";
 
+const CPA = 47; // Cost Per Appointment: $940 / 20 = $47
+
 const ROICalculator = () => {
-  const [marketingSpend, setMarketingSpend] = useState(10000);
-  const [closingRate, setClosingRate] = useState(30);
-  const [avgJobValue, setAvgJobValue] = useState(5000);
+  // 1. Updated state variables
+  const [appointmentsPerMonth, setAppointmentsPerMonth] = useState(20);
+  const [closingRate, setClosingRate] = useState(35);
+  const [avgJobValue, setAvgJobValue] = useState(10000); // Set initial value to $10,000 based on screenshots
 
   const [displayedRevenue, setDisplayedRevenue] = useState(0);
   const [displayedROI, setDisplayedROI] = useState(0);
 
-  // Calculate results
-  const appointments = Math.floor(marketingSpend / 250); // Assume $250 per appointment
-  const closedDeals = Math.floor((appointments * closingRate) / 100);
+  // 2. Calculate results using new logic
+  const closedDeals = (appointmentsPerMonth * closingRate) / 100;
   const totalRevenue = closedDeals * avgJobValue;
-  const profit = totalRevenue - marketingSpend;
-  const roiPercentage = Math.floor((profit / marketingSpend) * 100);
+
+  // New Calculation: System Investment = Appointments * $47 (CPA)
+  const systemInvestment = appointmentsPerMonth * CPA;
+  const profit = totalRevenue - systemInvestment;
+  const roiPercentage = Math.floor((profit / systemInvestment) * 100);
 
   // Animate numbers counting up
   useEffect(() => {
-    const revenueStep = totalRevenue / 50;
-    const roiStep = roiPercentage / 50;
+    // Round to nearest integer for display consistency with screenshots
+    const targetRevenue = Math.round(totalRevenue);
+    const targetROI = roiPercentage;
+
+    const revenueStep = targetRevenue / 50;
+    const roiStep = targetROI / 50;
     let currentRevenue = 0;
     let currentROI = 0;
 
@@ -27,9 +36,9 @@ const ROICalculator = () => {
       currentRevenue += revenueStep;
       currentROI += roiStep;
 
-      if (currentRevenue >= totalRevenue) {
-        currentRevenue = totalRevenue;
-        currentROI = roiPercentage;
+      if (currentRevenue >= targetRevenue) {
+        currentRevenue = targetRevenue;
+        currentROI = targetROI;
         clearInterval(interval);
       }
 
@@ -37,8 +46,19 @@ const ROICalculator = () => {
       setDisplayedROI(Math.floor(currentROI));
     }, 20);
 
+    // Only re-run if the calculated targets change
     return () => clearInterval(interval);
-  }, [marketingSpend, closingRate, avgJobValue, totalRevenue, roiPercentage]);
+  }, [appointmentsPerMonth, closingRate, avgJobValue, totalRevenue, roiPercentage]);
+
+  // Helper for formatting large job value string
+  const formatJobValue = (value: number) => {
+    return value >= 50000 ? "$50,000+" : `$${value.toLocaleString()}`;
+  };
+
+  // Helper for formatting large investment value string
+  const formatInvestment = (value: number) => {
+    return `$${value.toLocaleString()}`;
+  };
 
   return (
     <section id="roi-calculator" className="py-24 px-6 relative overflow-hidden">
@@ -56,18 +76,18 @@ const ROICalculator = () => {
         <div className="glass rounded-3xl p-8 md:p-12 space-y-12">
           {/* Inputs */}
           <div className="space-y-8">
-            {/* Marketing Spend */}
+            {/* Average Job Value */}
             <div className="space-y-4">
               <div className="flex justify-between items-center">
-                <label className="text-lg font-semibold">Monthly Marketing Spend</label>
-                <span className="text-2xl font-bold text-primary">${marketingSpend.toLocaleString()}</span>
+                <label className="text-lg font-semibold">Average Job Value</label>
+                <span className="text-2xl font-bold text-primary">{formatJobValue(avgJobValue)}</span>
               </div>
               <Slider
-                value={[marketingSpend]}
-                onValueChange={(value) => setMarketingSpend(value[0])}
-                min={5000}
-                max={50000}
-                step={1000}
+                value={[avgJobValue]}
+                onValueChange={(value) => setAvgJobValue(value[0])}
+                min={500} // MODIFIED: Changed min from 1000 to 500
+                max={50000} // Max value is 50,000
+                step={500}
                 className="cursor-pointer"
               />
             </div>
@@ -75,31 +95,31 @@ const ROICalculator = () => {
             {/* Closing Rate */}
             <div className="space-y-4">
               <div className="flex justify-between items-center">
-                <label className="text-lg font-semibold">Closing Rate</label>
+                <label className="text-lg font-semibold">Current Close Rate (%)</label>
                 <span className="text-2xl font-bold text-primary">{closingRate}%</span>
               </div>
               <Slider
                 value={[closingRate]}
                 onValueChange={(value) => setClosingRate(value[0])}
                 min={10}
-                max={80}
+                max={90} // Changed max from 80 to 90 based on screenshot range
                 step={5}
                 className="cursor-pointer"
               />
             </div>
 
-            {/* Average Job Value */}
+            {/* Qualified Appointments/Month */}
             <div className="space-y-4">
               <div className="flex justify-between items-center">
-                <label className="text-lg font-semibold">Average Job Value</label>
-                <span className="text-2xl font-bold text-primary">${avgJobValue.toLocaleString()}</span>
+                <label className="text-lg font-semibold">Qualified Appointments/Month</label>
+                <span className="text-2xl font-bold text-primary">{appointmentsPerMonth}</span>
               </div>
               <Slider
-                value={[avgJobValue]}
-                onValueChange={(value) => setAvgJobValue(value[0])}
-                min={1000}
-                max={20000}
-                step={500}
+                value={[appointmentsPerMonth]}
+                onValueChange={(value) => setAppointmentsPerMonth(value[0])}
+                min={5} // Changed min from 5000/1000 to 5 appointments
+                max={50} // Changed max from 50000/1000 to 50 appointments
+                step={1}
                 className="cursor-pointer"
               />
             </div>
@@ -108,24 +128,44 @@ const ROICalculator = () => {
           {/* Divider */}
           <div className="border-t border-border"></div>
 
-          {/* Results */}
-          <div className="grid md:grid-cols-3 gap-8">
-            <div className="text-center space-y-2 p-6 rounded-xl bg-secondary/30 border border-border">
-              <div className="text-sm text-muted-foreground uppercase tracking-wider">Appointments</div>
-              <div className="text-4xl font-bold text-primary animate-count-up">{appointments}</div>
+          {/* Results - Changed layout to 4 rows for consistency with the screenshots' data structure */}
+          <div className="space-y-4">
+            {/* Row 1: Monthly Qualified Appointments */}
+            <div className="flex justify-between items-center py-2 border-b border-border/50">
+              <div className="text-lg text-muted-foreground">Monthly Qualified Appointments</div>
+              <div className="text-lg font-bold text-primary">{appointmentsPerMonth}</div>
             </div>
 
-            <div className="text-center space-y-2 p-6 rounded-xl bg-secondary/30 border border-border">
-              <div className="text-sm text-muted-foreground uppercase tracking-wider">Total Revenue</div>
-              <div className="text-4xl font-bold text-primary animate-count-up">
-                ${displayedRevenue.toLocaleString()}
-              </div>
+            {/* Row 2: Expected Closed Jobs */}
+            <div className="flex justify-between items-center py-2 border-b border-border/50">
+              <div className="text-lg text-muted-foreground">Expected Closed Jobs</div>
+              <div className="text-lg font-bold text-primary">{closedDeals.toFixed(1)}</div>
             </div>
 
+            {/* Row 3: Monthly Revenue */}
+            <div className="flex justify-between items-center py-2 border-b border-border/50">
+              <div className="text-lg text-muted-foreground">Monthly Revenue</div>
+              <div className="text-lg font-bold text-primary">${totalRevenue.toLocaleString()}</div>
+            </div>
+
+            {/* Row 4: System Investment */}
+            <div className="flex justify-between items-center py-2 border-b border-border/50">
+              <div className="text-lg text-muted-foreground">System Investment</div>
+              <div className="text-lg font-bold text-primary">{formatInvestment(systemInvestment)}</div>
+            </div>
+
+            {/* Final Row: Net Monthly Profit (Highlighted) */}
+            <div className="flex justify-between items-center pt-4">
+              <div className="text-2xl font-bold uppercase tracking-wider">Net Monthly Profit</div>
+              <div className="text-2xl font-bold gradient-text animate-count-up">${profit.toLocaleString()}</div>
+            </div>
+
+            {/* Hidden ROI block (kept in comments if needed later, but not in screenshot)
             <div className="text-center space-y-2 p-6 rounded-xl bg-gradient-to-br from-primary/20 to-primary/5 border border-primary/30 glow">
               <div className="text-sm text-primary-foreground/80 uppercase tracking-wider font-semibold">ROI</div>
               <div className="text-4xl font-bold gradient-text animate-count-up">{displayedROI}%</div>
-            </div>
+            </div> 
+            */}
           </div>
         </div>
       </div>
