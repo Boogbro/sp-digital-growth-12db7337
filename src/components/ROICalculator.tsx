@@ -41,7 +41,7 @@ const ROICalculator = () => {
   }, [marketingSpend, closingRate, avgJobValue, totalRevenue, roiPercentage]);
 
   return (
-    <section className="py-32 px-6 relative overflow-hidden">
+    <section id="roi-calculator" className="py-32 px-6 relative overflow-hidden">
       {/* Background glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-primary/5 rounded-full blur-[150px]"></div>
       
