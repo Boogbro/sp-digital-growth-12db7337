@@ -1,12 +1,13 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
-import VideoPlayer from "@/components/VideoPlayer"; // Import the new component
+import VideoPlayer from "@/components/VideoPlayer";
 
 interface HeroProps {
   children?: React.ReactNode;
+  onBookClick?: () => void;
 }
 
-const Hero = ({ children }: HeroProps) => {
+const Hero = ({ children, onBookClick }: HeroProps) => {
   return (
     // Section uses pt-16 (for small navbar) and min-h-svh (full viewport height)
     <section id="hero" className="relative pt-16 flex flex-col justify-between min-h-svh overflow-hidden">
@@ -14,14 +15,14 @@ const Hero = ({ children }: HeroProps) => {
       <div className="absolute inset-0 z-0">
         <div className="absolute inset-0 bg-background"></div>
 
-        {/* Animated particles/geometric shapes - KEPT FOR DESIGN */}
+        {/* Animated particles/geometric shapes */}
         <div className="absolute top-20 left-10 w-72 h-72 bg-primary/10 rounded-full blur-[100px] animate-float"></div>
         <div
           className="absolute bottom-20 right-10 w-96 h-96 bg-primary/5 rounded-full blur-[120px] animate-float"
           style={{ animationDelay: "2s" }}
         ></div>
 
-        {/* Grid pattern - KEPT FOR DESIGN */}
+        {/* Grid pattern */}
         <div className="absolute inset-0 bg-[linear-gradient(rgba(59,130,246,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(59,130,246,0.03)_1px,transparent_1px)] bg-[size:100px_100px] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_50%,black,transparent)]"></div>
       </div>
 
@@ -46,12 +47,10 @@ const Hero = ({ children }: HeroProps) => {
             <Button
               size="lg"
               className="text-lg px-8 py-6 bg-primary hover:bg-primary/90 text-primary-foreground glow hover:scale-105 transition-all duration-300 group"
-              asChild
+              onClick={onBookClick}
             >
-              <a href="#contact-us">
-                Book a Strategy Call
-                <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" />
-              </a>
+              Book a Strategy Call
+              <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" />
             </Button>
           </div>
         </div>
@@ -59,7 +58,7 @@ const Hero = ({ children }: HeroProps) => {
         {/* Video Player Component */}
         <div className="w-full max-w-4xl px-4 md:px-6 pt-12">
           <VideoPlayer
-            videoUrl="https://storage.googleapis.com/msgsndr/X2rQE5wKsLFPGWY3j9b7/media/691eb27388e1e669aaa7d2c7.mp4" // Placeholder URL
+            videoUrl="https://storage.googleapis.com/msgsndr/X2rQE5wKsLFPGWY3j9b7/media/691eb27388e1e669aaa7d2c7.mp4"
             className="animate-scale-in"
             style={{ animationDelay: "0.2s" }}
           />
