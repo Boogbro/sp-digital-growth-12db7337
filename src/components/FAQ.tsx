@@ -1,10 +1,5 @@
 import { useState } from "react";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { ArrowRight } from "lucide-react";
 
 const faqData = [
@@ -50,10 +45,10 @@ const FAQ = () => {
   const [openItem, setOpenItem] = useState<string>("");
 
   return (
-    <section id="faq" className="py-32 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+    <section id="faq" className="py-24 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
       {/* Background gradient glow - Increased glow effect opacity for more presence */}
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-primary/10 to-transparent pointer-events-none" />
-      
+
       <div className="max-w-4xl mx-auto relative">
         {/* Header - Increased font sizes and emphasized primary color in the title */}
         <div className="flex justify-between items-start mb-20">
@@ -61,15 +56,11 @@ const FAQ = () => {
             <h2 className="text-5xl sm:text-7xl font-bold mb-4">
               <span className="gradient-text">Have questions?</span>
             </h2>
-            <p className="text-xl sm:text-2xl text-muted-foreground">
-              Find answers.
-            </p>
+            <p className="text-xl sm:text-2xl text-muted-foreground">Find answers.</p>
           </div>
-          
+
           <div className="hidden sm:block text-right">
-            <p className="text-base text-muted-foreground mb-2">
-              Can't find an answer?
-            </p>
+            <p className="text-base text-muted-foreground mb-2">Can't find an answer?</p>
             <a
               href="#contact-us"
               className="inline-flex items-center gap-2 text-primary hover:text-primary/80 transition-colors group font-semibold"
@@ -81,13 +72,7 @@ const FAQ = () => {
         </div>
 
         {/* FAQ Accordion - Added card/glass-like styling and increased spacing/size */}
-        <Accordion
-          type="single"
-          collapsible
-          value={openItem}
-          onValueChange={setOpenItem}
-          className="space-y-4"
-        >
+        <Accordion type="single" collapsible value={openItem} onValueChange={setOpenItem} className="space-y-4">
           {faqData.map((faq, index) => (
             <AccordionItem
               key={faq.id}
@@ -104,9 +89,7 @@ const FAQ = () => {
                 <div className="flex gap-4">
                   {/* Changed gradient line to exclusively use primary color for cohesion */}
                   <div className="w-1 bg-gradient-to-b from-primary to-primary/50 rounded-full flex-shrink-0" />
-                  <p className="text-lg text-muted-foreground leading-relaxed">
-                    {faq.answer}
-                  </p>
+                  <p className="text-lg text-muted-foreground leading-relaxed">{faq.answer}</p>
                 </div>
               </AccordionContent>
             </AccordionItem>
@@ -115,9 +98,7 @@ const FAQ = () => {
 
         {/* Mobile CTA */}
         <div className="sm:hidden mt-16 text-center">
-          <p className="text-base text-muted-foreground mb-2">
-            Can't find an answer?
-          </p>
+          <p className="text-base text-muted-foreground mb-2">Can't find an answer?</p>
           <a
             href="#contact-us"
             className="inline-flex items-center gap-2 text-primary hover:text-primary/80 transition-colors group font-semibold"
