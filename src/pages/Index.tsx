@@ -7,7 +7,7 @@ import FAQ from "@/components/FAQ";
 import FinalCTA from "@/components/FinalCTA";
 import Navbar from "@/components/Navbar";
 import VideoPlayer from "@/components/VideoPlayer";
-import Footer from "@/components/Footer"; // Import the new Footer component
+import Footer from "@/components/Footer";
 
 const Index = () => {
   return (
@@ -17,13 +17,12 @@ const Index = () => {
       <Hero>
         <LogoCarousel />
       </Hero>
-      {/* The LogoCarousel component is removed from here since it's a child of Hero now */}
       <SystemProcess />
       <GrowthInfrastructure />
       <ROICalculator />
       <FAQ />
       <FinalCTA />
-      <Footer /> {/* Add the Footer at the bottom */}
+      <Footer />
     </div>
   );
 };
